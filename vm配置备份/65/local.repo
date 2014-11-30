@@ -1,0 +1,10 @@
+[local]
+name=local
+baseurl=file:///usr/src/puppet/foreman-repo/foreman
+enabled=1 
+gpgcheck=0
+[puppet]
+name=puppet
+baseurl=file:///usr/src/puppet/foreman-repo/puppet-el6 
+enabled=1
+gpgcheck=0

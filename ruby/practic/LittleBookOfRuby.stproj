@@ -1,0 +1,169 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Ruby Include="8\and_or.rb" />
+    <Ruby Include="8\case.rb" />
+    <Ruby Include="8\case2.rb" />
+    <Ruby Include="8\if_else.rb" />
+    <Ruby Include="8\if_elseif.rb" />
+    <Ruby Include="8\if_else_alt.rb" />
+    <Ruby Include="8\if_then.rb" />
+    <Ruby Include="8\if_unless_mod.rb" />
+    <Ruby Include="8\unless.rb" />
+    <Ruby Include="5\array0.rb" />
+    <Ruby Include="5\array1.rb" />
+    <Ruby Include="5\array2.rb" />
+    <Ruby Include="5\array_assign.rb" />
+    <Ruby Include="5\array_index.rb" />
+    <Ruby Include="5\array_new.rb" />
+    <Ruby Include="5\dir_array.rb" />
+    <Ruby Include="5\multi_array.rb" />
+    <Ruby Include="4\accessors.rb" />
+    <Ruby Include="4\accessors2.rb" />
+    <Ruby Include="4\accessors3.rb" />
+    <Ruby Include="4\adventure2.rb" />
+    <Ruby Include="9\modules1.rb" />
+    <Ruby Include="9\modules2.rb" />
+    <Ruby Include="9\modules3.rb" />
+    <Ruby Include="9\modules4.rb" />
+    <Ruby Include="9\mod_vars.rb" />
+    <Ruby Include="9\requiremodule.rb" />
+    <Ruby Include="9\testmod.rb" />
+    <Ruby Include="1\helloname.rb" />
+    <Ruby Include="1\helloworld.rb" />
+    <Ruby Include="1\mainob.rb" />
+    <Ruby Include="1\method.rb" />
+    <Ruby Include="1\object.rb" />
+    <Ruby Include="1\string_eval.rb" />
+    <Ruby Include="1\tax_calculator.rb" />
+    <Ruby Include="1\uppercase.rb" />
+    <Ruby Include="7\block_syntax.rb" />
+    <Ruby Include="7\each_loop.rb" />
+    <Ruby Include="7\for_each.rb" />
+    <Ruby Include="7\for_loop.rb" />
+    <Ruby Include="7\for_to.rb" />
+    <Ruby Include="7\until.rb" />
+    <Ruby Include="7\while.rb" />
+    <Ruby Include="7\while2.rb" />
+    <Ruby Include="6\hash1.rb" />
+    <Ruby Include="6\hash2.rb" />
+    <None Include="ten\cd_db.yml" />
+    <Ruby Include="ten\data_save.rb" />
+    <Ruby Include="3\adventure1.rb" />
+    <Ruby Include="2\dogs_and_cats.rb" />
+    <Ruby Include="2\object_class.rb" />
+    <Ruby Include="2\p.rb" />
+    <Ruby Include="2\to_s.rb" />
+    <Ruby Include="2\treasure.rb" />
+    <None Include="readme.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="1" />
+    <Folder Include="2" />
+    <Folder Include="3" />
+    <Folder Include="4" />
+    <Folder Include="5" />
+    <Folder Include="6" />
+    <Folder Include="7" />
+    <Folder Include="8" />
+    <Folder Include="5" />
+    <Folder Include="4" />
+    <Folder Include="8" />
+    <Folder Include="9" />
+    <Folder Include="7" />
+    <Folder Include="6" />
+    <Folder Include="9" />
+    <Folder Include="ten\" />
+    <Folder Include="3" />
+    <Folder Include="2" />
+  </ItemGroup>
+  <PropertyGroup>
+    <RailsProject>False</RailsProject>
+    <SteelVersion>1.2</SteelVersion>
+    <AllowEditingWhileDebugging>True</AllowEditingWhileDebugging>
+    <F5StartsRuby>True</F5StartsRuby>
+    <MySQLPath>C:\Program Files\MySQL\MySQL Server 5.0\bin</MySQLPath>
+    <OneBreakpointPerLine>True</OneBreakpointPerLine>
+    <RailsDebugScript>C:\Data\Sapphire\SteelDevelopment\SteelPackage\Scripts\webbrick_service.rb</RailsDebugScript>
+    <RailsFilter>.log</RailsFilter>
+    <RailsServer>WEBrick</RailsServer>
+    <RubyInterpreter>C:\Program Files\ruby\bin\ruby.exe</RubyInterpreter>
+    <RubyExeNoDebug>
+    </RubyExeNoDebug>
+    <ServerPort>3000</ServerPort>
+    <SQLServerPath>C:\Program Files\Microsoft SQL Server\90\Tools\Binn</SQLServerPath>
+    <TraceLevel>0</TraceLevel>
+    <UseCylon>True</UseCylon>
+    <UseVisualRailsWorkbench>True</UseVisualRailsWorkbench>
+    <WebServerScript>C:\Data\Sapphire\SteelDevelopment\SteelPackage\Scripts\webrick_server.bat</WebServerScript>
+    <SynchronizationExcludeHiddenFiles>True</SynchronizationExcludeHiddenFiles>
+    <SynchronizeExcludeNoExtension>False</SynchronizeExcludeNoExtension>
+    <RubyTimeout>60</RubyTimeout>
+    <ERBTimeout>60</ERBTimeout>
+    <AutoUpdateRWBFiles>False</AutoUpdateRWBFiles>
+    <DebugProximityClass>False</DebugProximityClass>
+    <DebugProximityGlobal>False</DebugProximityGlobal>
+    <DebugProximityInstance>False</DebugProximityInstance>
+    <DebugProximityObjectMethods>False</DebugProximityObjectMethods>
+    <DebugProximitySelf>False</DebugProximitySelf>
+    <DebugProximitySingletonMethods>False</DebugProximitySingletonMethods>
+    <Framework>Rails1</Framework>
+    <JITDebugging>False</JITDebugging>
+    <KeepStackFrames>False</KeepStackFrames>
+    <RubyType>Standard</RubyType>
+    <SynchronizationExcludeDirectories>~intermediate
+SyntaxCheck</SynchronizationExcludeDirectories>
+    <SynchronizationExcludeExtensions>log</SynchronizationExcludeExtensions>
+    <SynchronizationExcludeNoExtension>True</SynchronizationExcludeNoExtension>
+    <RakeWorkingDirectory>
+    </RakeWorkingDirectory>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <Name>Debug</Name>
+    <OutputPath>Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <Name>Release</Name>
+    <OutputPath>Release\</OutputPath>
+  </PropertyGroup>
+  <UsingTask TaskName="Sapphire.Steel.SteelRubyBuild" AssemblyName="SteelBuild, Version=1.0.0.0, Culture=neutral, PublicKeyToken=8a42f26dbbcba2be, processorArchitecture=x86" />
+  <UsingTask TaskName="Sapphire.Steel.SteelRailsBuild" AssemblyName="SteelBuild, Version=1.0.0.0, Culture=neutral, PublicKeyToken=8a42f26dbbcba2be, processorArchitecture=x86" />
+  <Target Name="BuildRails" Inputs="@(EmbeddedRuby)" Outputs="$(MSBuildProjectDirectory)\SyntaxCheck\%(Identity)">
+    <MakeDir Directories="SyntaxCheck" />
+    <SteelRailsBuild ERBFile="@(EmbeddedRuby)" ProjectDirectory="$(MSBuildProjectDirectory)" ERBProcessor="$(ERBProcessor)" ERBFlags="$(ERBFlags)" ERBLibraryFiles="$(ERBLibraryFiles)" ERBTimeout="$(ERBTimeout)" />
+  </Target>
+  <Target Name="BuildRuby" Inputs="@(Ruby)" Outputs="$(MSBuildProjectDirectory)\SyntaxCheck\%(Identity)">
+    <MakeDir Directories="SyntaxCheck" />
+    <SteelRubyBuild RubyFile="@(Ruby)" ProjectDirectory="$(MSBuildProjectDirectory)" RubyInterpreter="$(RubyInterpreter)" RubyInterpreterFlags="$(RubyInterpreterFlags)" RubyLibraryFiles="$(RubyLibraryFiles)" RubyLibraryPaths="$(LibraryPath)" RubyTimeout="$(RubyTimeout)" />
+  </Target>
+  <Target Name="Clean">
+    <RemoveDir Directories="$(MSBuildProjectDirectory)\SyntaxCheck" />
+  </Target>
+  <Target Name="Build" DependsOnTargets="$(BuildDependsOn)" Inputs="@(Ruby); @(EmbeddedRuby)" Outputs="$(MSBuildProjectDirectory)\SyntaxCheck\%(Identity)">
+  </Target>
+  <Target Name="Clean">
+    <RemoveDir Directories="$(MSBuildProjectDirectory)\SyntaxCheck" />
+  </Target>
+  <PropertyGroup>
+    <RebuildDependsOn>
+      Clean;
+      Build;
+    </RebuildDependsOn>
+    <BuildDependsOn>
+      BeforeBuild;
+      BuildRuby; 
+      BuildRails;
+      AfterBuild;
+    </BuildDependsOn>
+    <SteelVersion>1.2</SteelVersion>
+  </PropertyGroup>
+  <Target Name="Rebuild" DependsOnTargets="$(RebuildDependsOn)" Inputs="@(Ruby)" Outputs="$(MSBuildProjectDirectory)\SyntaxCheck\%(Identity)">
+  </Target>
+  <Target Name="BeforeBuild" Condition="'$(PreBuildEvent)'!='' ">
+    <Exec Command="$(PreBuildEvent)" />
+  </Target>
+  <Target Name="AfterBuild" Condition="'$(PostBuildEvent)'!='' ">
+    <Exec Command="$(PostBuildEvent)" />
+  </Target>
+  <!--<Import Project="$(MSBuildBinPath)\Microsoft.Common.targets" />-->
+  <Target Name="ResolveAssemblyReferences" />
+</Project>

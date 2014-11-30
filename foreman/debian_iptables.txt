@@ -1,0 +1,47 @@
+*filter
+# 允许回环网卡
+-A INPUT -i lo -j ACCEPT
+
+# 允许已建立的或相关连的通行
+-A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+
+# Allows all outbound traffic
+# 允许本机向外的访问
+-A OUTPUT -j ACCEPT
+
+# 允许http:80 https:443 mysql:3306 ftp:21 20端口的访问
+-A INPUT -p tcp --dport 80 -j ACCEPT
+-A INPUT -p tcp --dport 443 -j ACCEPT
+-A INPUT -p tcp --dport 3306 -j ACCEPT
+-A INPUT -p tcp -s 0/0 --sport 1024:65535 --dport 21 -m state --state NEW,ESTABLISHED -j ACCEPT
+-A INPUT -p tcp -s 0/0 --sport 1024:65535 --dport 20 -m state --state NEW,ESTABLISHED -j ACCEPT
+
+# 允许ssh端口22的访问(如果修改了端口就换成你改的那个端口号)
+-A INPUT -p tcp -m state --state NEW --dport 22 -j ACCEPT
+
+# 允许PING(不允许的话把下面那个删了就可以)
+-A INPUT -p icmp -m icmp --icmp-type 8 -j ACCEPT
+
+#记录接收数据包被拒绝（log-level=7）的日志，最高记录频率为5条/分钟，日志可通过dmesg或syslog查看
+-A INPUT -m limit --limit 5/min -j LOG --log-prefix "iptables denied: " --log-level 7
+
+# 禁止其它未允许的规则访问:
+-A INPUT -j REJECT
+-A FORWARD -j REJECT
+COMMIT
+
+==========http://www.zxsdw.com/index.php/archives/104/
+保存本文件,使之生效,注意,iptables不需要重启,加载一次规则就成：
+iptables-restore < /etc/iptables.test.rules
+iptables -L
+第四步:保存生效的配置,让系统重启的时候自动加载有效配置
+ 编辑创建如下文件:
+vim /etc/network/if-pre-up.d/iptables
+添加如下内容:
+ #!/bin/bash
+ /sbin/iptables-restore < /etc/iptables.test.rules
+最后,设置可执行仅限
+chmod +x /etc/network/if-pre-up.d/iptables
+
+第五:其它
+ 如果你想设置某ip段可以访问所有服务,你需要在iptables.test.rules文件中加入-A INPUT -m iprange --src-range 192.168.1.1-192.168.1.199 -j ACCEPT,然后从第三步再设置一次。

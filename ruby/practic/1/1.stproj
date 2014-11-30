@@ -1,0 +1,72 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition=" '$(Configuration)' == 'Develop' ">
+    <Name>Develop</Name>
+    <CompilerName>
+    </CompilerName>
+    <CompilerFlags>
+    </CompilerFlags>
+    <CompilerDirectory>
+    </CompilerDirectory>
+    <LibraryPath>
+    </LibraryPath>
+    <LibraryFiles>
+    </LibraryFiles>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <Name>Release</Name>
+    <CompilerFlags>
+    </CompilerFlags>
+    <CompilerDirectory>
+    </CompilerDirectory>
+    <LibraryPath>
+    </LibraryPath>
+    <Library>
+    </Library>
+    <LibraryFiles>
+    </LibraryFiles>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ProjectGuid>{7c9afa8a-ab67-4222-bda9-e28e4023c3dc}</ProjectGuid>
+    <AssemblyName>one</AssemblyName>
+    <Name>1</Name>
+    <RootNamespace>one</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="helloname.rb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="mainob.rb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="method.rb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="object.rb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="puts_gets.rb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="string_eval.rb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="tax_calculator.rb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="uppercase.rb">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Ruby Include="helloname.rb" />
+    <Ruby Include="helloworld.rb" />
+    <Ruby Include="mainob.rb" />
+    <Ruby Include="method.rb" />
+    <Ruby Include="object.rb" />
+    <Ruby Include="string_eval.rb" />
+    <Ruby Include="tax_calculator.rb" />
+    <Ruby Include="uppercase.rb" />
+  </ItemGroup>
+  <Target Name="Build" />
+  <Target Name="ReBuild" />
+</Project>

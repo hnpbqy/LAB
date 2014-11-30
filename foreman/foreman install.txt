@@ -1,0 +1,147 @@
+centos6.6 final  
+#puppet-server     3.6.2
+#puppet            3.6.2
+facter            2.0.2
+mcollective       2.2.4
+rabbitmq-server   3.2.4
+#foreman           1.5.3
+foreman-proxy     1.5.4
+foreman-proxy     1.5.4   1.5.1 or higher
+ruby 默认安装ruby 1.8.7
+epel-release 源安装
+rpm -ivh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+yum puppetlabs-release安装
+rpm -ivh http://yum.puppetlabs.com/puppetlabs-release-el-6.noarch.rpm
+
+yum -y install http://yum.theforeman.org/releases/1.5/el6/x86_64/foreman-release.rpm
+rpm -ivh  http://yum.puppetlabs.com/el/6.5/products/x86_64/puppetlabs-release-6-5.noarch.rpm
+yum clean ;yum clean all (= yum clean packages; yum clean oldheaders)
+setenforce 0
+service iptables stop
+设置hosts  hostname
+ yum install puppet-server puppet facter
+yum install puppet-3.6.2 puppet-server-3.6.2  facter
+# yum install puppet-3.6.2 puppet-server-3.6.2
+# ruby193-ruby.x86_64                       1.9.3.484-49.el6.centos.alt
+ yum --enablerepo=scl clean all
+ 
+
+create database foreman CHARACTER SET utf8; 
+grant all privileges on foreman.* to foreman@'localhost' identified by 'odotboss'; 
+flush privileges;  
+#grant all privileges on foreman.* to foreman@'192.168.1.%';  identified by 'odotboss'; 
+#grant all privileges on foreman.* to foreman@'%' identified by 'odotboss'; 
+grant 参考http://www.cnblogs.com/hcbin/archive/2010/04/23/1718379.html 
+#flush privileges;  
+#CREATE TABLE userinfo (  id int unsigned auto_increment primary key,  name varchar(50),  age int,  sex varchar(10));
+--插入insert into userinfo(name,age,sex) values('张三',24,'男');
+
+foreman-installer  --foreman-db-adapter mysql2 --foreman-db-type mysql  --foreman-db-database foreman  --foreman-db-username root  --foreman-db-password odotboss
+
+Execution of '/usr/bin/yum -d 0 -e 0 -y install foreman-mysql2' returned 1: Error Downloading Packages:
+找对应freman 1.5.3的版本 yum安装 官方rpm包
+yum install http://yum.theforeman.org/releases/1.5/el6/x86_64/foreman-selinux-1.5.2-1.el6.noarch.rpm
+ Execution of '/usr/bin/yum -d 0 -e 0 -y list foreman-selinux' returned 1: Error: No matching Packages to list
+之前安装foreman官方yum包版本错误高了 foreman-installer也安装错误 卸载源包  foreman-installer在装
+找对应freman 1.5.3的版本 yum安装 官方rpm包
+http://yum.theforeman.org/releases/1.5/el6/x86_64/foreman-release.rpm
+http://yum.theforeman.org/releases/1.5/el6/x86_64/foreman-installer-1.5.1-1.el6.noarch.rpm
+
+报 RROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: NO) 
+mysqlroot 重置空
+
+foreman-installer --foreman-db-adapter mysql2 --foreman-db-type mysql --no-enable-puppet --no-enable-foreman-proxy --foreman-configure-epel-repo=false   --foreman-db-username foreman  --foreman-db-password odotboss
+---
+报
+Execution of '/usr/bin/yum -d 0 -e 0 -y install ruby193-rubygem-foreman_bootdisk' returned 1: Error: Package: ruby193-rubygem-foreman_bootdisk-3.2.1-1.el6.noarch (foreman-plugins)
+
+Execution of '/usr/bin/yum -d 0 -e 0 -y install ruby193-rubygem-foreman_setup' returned 1: Error Downloading Packages:
+foreman官方找不到 https://github.com/kisspuppet/foreman-repo   cat /etc/redhat-release
+http://yum.puppetlabs.com/   找不到
+rpm -e puppetlabs-release
+http://yum.puppetlabs.com/puppetlabs-release-el-6.noarch.rpm 没装
+不得已去掉 epel  foreman官网yum repo  利用base和本地安装好
+yum list |grep  ruby193-rubygem-foreman_setup 找到包名 yum install 包名。
+--------------
+正在安装:
+uby193-rubygem-foreman_bootdisk                            noarch                            2.0.8-1.el6                                              local                             30 k
+为依赖而安装:
+ genisoimage                                                 x86_64                            1.1.9-12.el6                                             base                             348 k
+ ipxe-bootimgs                                               noarch                            20130517-1.1fm.gitc4bce43.el6                            local                            991 k
+--
+  
+正在安装:
+ ruby193-rubygem-foreman_setup                                noarch                                2.0.3-1.el6                                     local                                 32 k
+为依赖而安装:
+ libxslt                                                      x86_64                                1.1.26-2.el6_3.1                                base                                 452 k
+ ruby193-rubygem-deface                                       noarch                                0.7.2-6.el6                                     local                                 13 k
+ ruby193-rubygem-nokogiri                                     x86_64                                1.5.11-1.el6                                    local                                343 k
+
+
+Install       4 Package(s)
+
+最后成功
+foreman-installer --foreman-db-adapter mysql2 --foreman-db-type mysql --no-enable-puppet --no-enable-foreman-proxy --foreman-configure-epel-repo=false   --foreman-db-username foreman  --foreman-db-password odos
+Installing             Done                                               [100%] [...........................................................................................................]
+  Success!
+  * Foreman is running at https://puppet.viong.com
+      Default credentials are 'admin:changeme'
+  The full log is at /var/log/foreman-installer/foreman-installer.log
+-------
+安装foreman-proxy及依赖包
+[root@foreman02 ~]# yum install tftp-server syslinux foreman-proxy
+
+3.5、安装foreman-proxy，并通过foreman-installer重新安装foreman和puppetmaster
+
+注意：以下方式是安装后会代理TFTP, DNS, DHCP, Puppet, and Puppet CA，并且puppetmaster会以apache+passenger的方式安装运行。
+[root@foreman02 ~]# 
+foreman-installer --enable-foreman --enable-foreman-proxy --enable-puppet  --puppet-server=true --foreman-proxy-puppetrun=true  --foreman-proxy-puppetca=true   --foreman-proxy-dhcp=true  --foreman-proxy-tftp=true  --foreman-proxy-dns=true --foreman-proxy-dns-interface=eth0 --foreman-proxy-dns-zone=kisspuppet.com  --foreman-proxy-dns-reverse=1.168.192.in-addr.arpa  --foreman-proxy-dns-forwarders=8.8.8.8 --foreman-proxy-dns-forwarders=8.8.4.4 --foreman-configure-epel-repo=false  --foreman-proxy-register-in-foreman=false 
+netstat  -ntlp 看端口是什么进程打开的 或者lsof -Pnl +M -i4 | grep 8140 
+lsof -c puppet 查看进程打开哪些文件
+============================================================================
+setenforce 0
+ service iptables stop
+ hostname  /etc/hosts
+#foreman-plugins.repo  puppetlabs.repo 删除后 才安装好puppet-server-3.6.2  yum指定版本yum install puppet-3.1.0-1 puppet-server-3.1.0-1
+#puppet-server-3.6.2-1.el6.noarch.rpm
+yum install foreman-installer
+#yum install pupuppet-server puppet facter 
+yum install puppet-server.noarch  puppet facter
+
+安装puppetmaster，并生成CA和证书 
+vi /etc/puppet/puppet.conf
+ certname = puppet.viong.com
+ service puppetmaster start
+ puppet  cert --list --all
+ service puppetmaster stop
+yum install foreman mod_passenger mod_ssl ruby193-rubygem-passenger-native mysql mysql-server foreman-mysql2
+
+foreman-installer --foreman-db-adapter mysql2 --foreman-db-type mysql --no-enable-puppet --no-enable-foreman-proxy --foreman-configure-epel-repo=false
+ #'/usr/bin/yum -d 0 -e 0 -y list foreman-selinux' returned 1: Error: 
+chown foreman.foreman -R /usr/share/foreman 
+
+su - foreman -s /bin/bash -c /usr/share/foreman/extras/dbmigrate 
+--
+mysqladmin -uroot password odotboss
+create database puppet CHARACTER SET utf8; 
+grant all privileges on puppet.* to puppet@'localhost' identified by 'odotboss'; 
+flush privileges; 
+#revoke all on puppet.* from puppet@localhost;
+revoke USAGE ON *.* from 'puppet'@'localhost' IDENTIFIED BY PASSWORD '*31FEBD4C07B1756F706B333ACB620285989C5C66';
+revoke all on *.* from puppet@localhost ;
+delete from user where User="puppet";
+delete from user where User="foreman";
+User: foreman
+vim /usr/share/foreman/config/database.yml   
+production:
+     adapter: mysql
+     database: puppet
+     username: puppet
+     password: odotboss
+     host: localhost
+     socket: "/var/run/mysqld/mysqld.pid"
+#--	 no such file to load -- apipie/middleware/checksum_in_headers
+cd /usr/share/foreman/ 
+RAILS_ENV=production /usr/bin/rake db:migrate 
+rake puppet:migrate:populate_hosts RAILS_ENV=production 
+

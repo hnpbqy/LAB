@@ -1,0 +1,15 @@
+# CentOS-SCL.repo
+#
+# The Software Collections  ( SCL ) repository contains rpms for newer 
+# software that can be installed alongside default versions
+#
+# Look at http://wiki.centos.org/AdditionalResources/Repositories/SCL
+# for more details about how this repository works
+
+[scl]
+name=CentOS-$releasever - SCL
+baseurl=http://mirror.centos.org/centos/$releasever/SCL/$basearch/
+gpgcheck=1
+enabled=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6
+

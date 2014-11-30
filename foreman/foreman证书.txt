@@ -1,0 +1,39 @@
+LoadModule passenger_module /usr/local/lib/ruby/gems/2.1.0/gems/passenger-4.0.53/buildout/apache2/mod_passenger.so
+#LoadModule passenger_module /usr/lib/ruby/gems/1.8/gems/passenger-4.0.19/buildout/apache2/mod_passenger.so
+<IfModule mod_passenger.c>
+   PassengerRoot /usr/local/lib/ruby/gems/2.1.0/gems/passenger-4.0.53/
+   PassengerRuby /usr/bin/ruby
+   PassengerHighPerformance on
+   PassengerMaxPoolSize 12
+   PassengerPoolIdleTime 1500
+   PassengerStatThrottleRate 120
+ # RailsAutoDetect On
+</IfModule>
+Listen 8140  #监听TCP 8140端口，这是PuppetMaster服务器的标准端口
+<VirtualHost *:8140>
+        SSLEngine on  #开始ssl加密
+        SSLProtocol -ALL +SSLv3 +TLSv1
+        SSLCipherSuite ALL:!ADH:RC4+RSA:+HIGH:+MEDIUM:-LOW:-SSLv2:-EXP #开启ssl加密
+        SSLCertificateFile      /var/lib/puppet/ssl/certs/server.viong.com.pem
+        SSLCertificateKeyFile   /var/lib/puppet/ssl/private_keys/server.viong.com.pem
+        SSLCertificateChainFile /var/lib/puppet/ssl/ca/ca_crt.pem
+        SSLCACertificateFile    /var/lib/puppet/ssl/ca/ca_crt.pem
+        SSLCARevocationFile     /var/lib/puppet/ssl/ca/ca_crt.pem #打开证书撤销功能，当我们颁发或撤销Puppet agent的证书时，Puppet cert命令会自动更关心ca_crl.pem文件
+        SSLVerifyClient optional
+        SSLVerifyDepth  1
+        SSLOptions +StdEnvVars #配置Apache来验证Puppet agent证书的真实性。验证的结果会被保存在这个环境变量中，运行在Passenger中的Puppet master进程会使用这个变量来认证Puppet agent。
+#Puppet agent证书验证的结果会以客户端请求头的形式存放在标准环境中。
+        RequestHeader unset X-Forwarded-For
+        RequestHeader set X-SSL-Subject %{SSL_CLIENT_S_DN}e
+        RequestHeader set X-Client-DN %{SSL_CLIENT_S_DN}e
+        RequestHeader set X-Client-Verify %{SSL_CLIENT_VERIFY}e
+        DocumentRoot /etc/puppet/rack/puppetmaster/public/
+        RackBaseURI /
+#Rack为Web服务器提供了用来和Puppet这样的Ruby HTTP服务交换请求和响应的一些常用API。Rack经常被用于在多台Web服务器上部署如Puppet Dashboad这样的web程序。
+        <Directory /etc/puppet/rack/puppetmaster/>  #虚拟主机部分
+                Options None
+                AllowOverride None
+                Order allow,deny
+                allow from all
+        </Directory>
+</VirtualHost>
