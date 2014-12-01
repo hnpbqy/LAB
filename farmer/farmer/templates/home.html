@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block content %}
+<table class="table">
+  <thead>
+    <tr>
+      <th class = 'th-id'>#</th>
+      <th>Shell Command @ Hosts</th>
+      <th>Start Time</th>
+      <th>End Time</th>
+      <th>Succeed?</th>
+      <th>By Who?</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+{% for task in tasks %}
+    {% if task.rc != 0 %}
+    <tr>
+    {% else %}
+    <tr class = 'tr-yes'>
+    {% endif %}
+      <td>{{ task.id }}</td>
+      <td class = 'white-text home-shell-command'>{{ task }}</td>
+      <td>
+        {{ task.start | date:"Y-m-d G:i:s" }}<br />
+      </td>
+      <td>
+        {% if task.end %}
+        {{ task.end | date:"Y-m-d G:i:s" }}
+        {% else %}
+        N/A
+        {% endif %}
+      </td>
+      <td>
+        {% if task.rc == 0 %}
+        <span class = 'green-text'>yes</span>
+        {% elif task.rc %}
+        <span class = 'red-text'>no</span>
+        {% else %}
+        N/A
+        {% endif %}
+      </td>
+      <td>
+        {{ task.farmer }}
+      </td>
+      <td class = 'home-actions'>
+        {% if task.rc %}
+        <a href="{% url 'retry' id=task.id %}">retry</a>
+        {% endif %}
+        <a href="{% url 'rerun' id=task.id %}">rerun</a>
+        <a href="{% url 'detail' id=task.id %}">detail</a>
+      </td>
+    </tr>
+{% endfor %}
+  </tbody>
+</table>
+{% endblock %}

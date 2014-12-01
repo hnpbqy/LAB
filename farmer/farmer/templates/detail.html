@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>
+    <span class = 'white-text'>There are {{ jobs | length }} jobs in total</span>
+{% if task.rc == 0 or task.rc %}
+    , <span class = 'green-text'>{{ jobs_succeed | length }} succeed</span> , <span class = 'red-text'>{{ jobs_failed | length }} failed</span>
+{% endif %}
+.
+</h1>
+<table class = 'table'>
+  <thead>
+    <tr>
+      <th>Host</th>
+      <th class = 'detail-command'>Command</th>
+      <th>Return Code</th>
+      <th>Start Time</th>
+      <th>End Time</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+{% for job in jobs %}
+    <tr>
+      <td><a class = 'anchor' name = '{{ job.id }}'>{{ job.host }}</a></td>
+      <td><span class = 'white-text'>{{ job.cmd }}</span></td>
+      <td>{{ job.rc }}</td>
+      <td>{{ job.start | date:"Y-m-d G:i:s" }}</td>
+      <td>{{ job.end | date:"Y-m-d G:i:s" }}</td>
+      <td><a href="{% url 'detail' id=task.id %}?jobid={{ job.id }}#{{ job.id }}">More &#187;</a></td>
+    </tr>
+    {% if job.id == jobid %}
+    <tr>
+      <td colspan = '6'>
+        <h3 class = 'green-text'>stdout &#187;</h3>
+        <pre>{{ job.stdout }}</pre>
+        <h3 class = 'red-text'>stderr &#187;</h3>
+        <pre>{{ job.stderr }}</pre>
+      </td>
+    </tr>
+    {% endif %}
+{% endfor %}
+  </tbody>
+</table>
+{% endblock %}
