@@ -555,3 +555,85 @@ def fun2():
 fun1()
 fun2()
 print x
+
+
+a = 'python'
+print 'hello,', a or 'world'
+
+b = ''
+print 'hello,', b or 'world'
+
+L = [75, 92, 59, 68]
+sum = 0.0
+for x in L:
+    sum=sum +x
+print sum / 4
+
+sum = 0
+x = 1
+while x <100:
+    sum=sum+x
+    x=x+2
+print sum
+
+sum = 0
+x = 1
+while True:
+    sum = sum + x
+    x = x + 2
+    if x > 100:
+        break
+print sum
+
+sum = 0
+x = 1
+n = 1
+while True:
+    if n>20:
+        break
+    sum=sum+x
+    x = x * 2
+    n =n+1
+print sum
+
+
+for x in ['A', 'B', 'C']:
+    for y in ['1', '2', '3']:
+        print x + y
+
+for x in [1, 2, 3, 4, 5, 6, 7, 8, 9]:
+    for y in [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]:
+        if x < y:
+            print x * 10 + y
+d = {
+    'Adam': 95,
+    'Lisa': 85,
+    'Bart': 59,
+    'Paul': 75
+}
+print d
+print d['Lisa']
+
+d = {
+    95: 'Adam',
+    85: 'Lisa',
+    59: 'Bart'
+}
+print d[95]
+
+s = set(['Adam', 'adam', 'Lisa', 'lisa', 'Bart', 'bart', 'Paul', 'paul'])
+print 'adam' in s
+print 'bart' in s
+
+s = set([('Adam', 95), ('Lisa', 85), ('Bart', 59)])
+for x in s:
+    print x[0] + ':', x[1]
+
+L = []
+x=1
+while True:
+    if x==101:
+        break
+    L.append(x**2)
+    x=x+1
+print sum(L)

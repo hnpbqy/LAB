@@ -1,6 +1,14 @@
-# -*- coding:utf-8 -*-
+# coding:utf-8
+print u"源代码以.py为扩展名由python解释，经编译后生成.pyc文件。经过优化的源文件会以.pyo 生成pyo：python -O -m py_complie hello.py"
 
-print "欢迎来中国" # 使用中文的例子
+print "欢迎使用python中文处理1".decode('utf-8')
+#print "欢迎来中国 中文处理1"
+str1 = u"欢迎使用python中文处理2"
+#str1 = "欢迎使用python中文处理2"
+print str1
+print  u"欢迎使用python中文处理3"
+
+# 使用中文的例子
 #raw_input("Press enter key to close this window");
 #print "Hello,world!"
 #raw_input("Press enter key to close this window");
@@ -9,8 +17,9 @@ print "欢迎来中国" # 使用中文的例子
 
 a=100.0
 b=201.1
-c=2343
-print (a+b+c)/c
+c=234
+print  (a+b+c)/c
+print u'计算器%d' % ((a+b+c)/c)
 
 #可以如下打印出预定义输出格式的字符串:
 print """
@@ -18,8 +27,21 @@ Usage: thingy [OPTIONS]
      -h                        Display this usage message
      -H hostname               Hostname to connect to
 """
+print u"#变量"
+x = 1
+print id(x)
+x = 2
+print id(x)
 
-#字符串是怎么访问
+_a = 1
+_b = 2
+def fun():
+   print _a
+   print _b 
+fun()
+#全局变量也可以专门放文件 improt  引用文件.变量
+#常量
+#字符串是怎么访问 。python有3种表示字符串类型的方式，即单引号、双引号、三引号
 word="abcdefg"
 a=word[2]
 print "a is: "+a
@@ -87,7 +109,29 @@ print "Adds new element"
 word.append('h')
 print word
 
-#
+#运算符与表达式 没有自增自减运算i++。但可以i+=1、!= <> 不等于、==等于、 and逻辑与、or逻辑或、not逻辑非。
+'''
+if (表达式)：
+    语句1
+else：
+    语句2
+
+if (表达式)：
+   语句1
+elif（表达式）：
+   语句2
+else：
+   语句2
+while（表达式）：
+   ...
+else：
+   ...
+   
+for x in jihe:
+   ....
+else:
+   
+'''
 # Multi-way decision
 x=int(raw_input("Please enter an integer:"))
 if x<0:
@@ -151,8 +195,8 @@ for line in f:
 f.close()
 
 
-
-2.9 异常处理
+"""
+#2.9 异常处理
 
 s=raw_input("Input your age:")
 if s =="":
@@ -169,10 +213,10 @@ else: # It is useful for code that must be executed if the try clause does not r
 finally: # Clean up action
     print "Goodbye!"
 
---------------------------------------------------------------------------------
+#--------------------------------------------------------------------------------
 
 
-2.10 类和继承
+#2.10 类和继承
 
 class Base:
     def __init__(self):
@@ -193,11 +237,10 @@ oChild.add("str1")
 print oChild.data
 print oChild.plus(2,3)
 
---------------------------------------------------------------------------------
+#--------------------------------------------------------------------------------
 
 
-2.11 包机制
-    每一个.py文件称为一个module,module之间可以互相导入.请参看以下例子:
+#2.11 包机制每一个.py文件称为一个module,module之间可以互相导入.请参看以下例子:
 # a.py
 def add_func(a,b):
     return a+b
@@ -208,20 +251,20 @@ print "Import add_func from module a"
 print "Result of 1 plus 2 is: "
 print add_func(1,2)    # If using "import a" , then here should be "a.add_func"
 
-    module可以定义在包里面.Python定义包的方式稍微有点古怪,假设我们有一个parent文件夹,该文件夹有一个child子文件夹.child中有一个module a.py . 如何让Python知道这个文件层次结构?很简单,每个目录都放一个名为_init_.py 的文件.该文件内容可以为空.这个层次结构如下所示:
-parent
+# module可以定义在包里面.Python定义包的方式稍微有点古怪,假设我们有一个parent文件夹,该文件夹有一个child子文件夹.child中有一个module a.py . 如何让Python知道这个文件层次结构?很简单,每个目录都放一个名为_init_.py 的文件.该文件内容可以为空.这个层次结构如下所示:
+#parent
   --__init_.py
   --child
     -- __init_.py
     --a.py
 
-b.py
-    那么Python如何找到我们定义的module?在标准包sys中,path属性记录了Python的包路径.你可以将之打印出来:
+#b.py
+#    那么Python如何找到我们定义的module?在标准包sys中,path属性记录了Python的包路径.你可以将之打印出来:
 
 import sys
 
 print sys.path
-    通常我们可以将module的包路径放到环境变量PYTHONPATH中,该环境变量会自动添加到sys.path属性.另一种方便的方法是编程中直接指定我们的module路径到sys.path 中:
+ #   通常我们可以将module的包路径放到环境变量PYTHONPATH中,该环境变量会自动添加到sys.path属性.另一种方便的方法是编程中直接指定我们的module路径到sys.path 中:
 
 import sys
 sys.path.append('D:\\download')
@@ -234,3 +277,5 @@ print sys.path
 print "Import add_func from module a"
 print "Result of 1 plus 2 is: "
 print add_func(1,2)
+
+"""
